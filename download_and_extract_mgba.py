@@ -27,4 +27,4 @@ def download_and_extract_mgba(mgba_link):
 		return False
 
 
-	subprocess.run(['7za', 'e', local_filename])
+	subprocess.run(['7z', 'e', local_filename])

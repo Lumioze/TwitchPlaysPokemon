@@ -7,7 +7,7 @@
 from os.path import exists
 import requests
 import shutil
-from pyunpack import Archive
+import subprocess
 
 
 '''
@@ -27,4 +27,4 @@ def download_and_extract_mgba(mgba_link):
 		return False
 
 
-	Archive(local_filename).extractall('.')
+	subprocess.run(['7z', 'e', local_filename])

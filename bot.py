@@ -2,7 +2,7 @@
 # @Author: user
 # @Date:   2023-04-13 11:51:16
 # @Last Modified by:   user
-# @Last Modified time: 2023-04-14 13:18:49
+# @Last Modified time: 2023-04-14 15:51:30
 
 from constants import *
 from download_and_extract_mgba import *
@@ -16,7 +16,7 @@ def callback(message):
 
 def run():
 	global hld
-	hld = setup_mgba(mgba_executable)
+	hld = setup_mgba(mgba_executable, mgba_link)
 	connection = twitch_chat_irc.TwitchChatIRC()
 
 	connection.listen(input('Which Twitch channel would you like to join? ').lower(), on_message=callback)

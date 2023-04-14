@@ -4,10 +4,12 @@ import pyautogui
 import pydirectinput
 import subprocess
 import time
+from download_and_extract_mgba import download_and_extract_mgba
 
-def setup_mgba(mgba_executable):
+def setup_mgba(mgba_executable, mgba_link):
+	download_and_extract_mgba(mgba_link)
 	gba_file = input("Path to Pokemon ROM: ")
-	subprocess.Popen([mgba_executable, gba_file])
+	subprocess.Popen([mgba_executable, '-4', gba_file])
 	time.sleep(10)
 	print("Ready!")
 	hld = win32gui.FindWindow (None, "mGBA") # Returns the handle of the window titled UNTITLED

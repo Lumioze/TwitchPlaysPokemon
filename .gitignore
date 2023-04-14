@@ -126,6 +126,7 @@ venv.bak/
 dmypy.json
 
 # Custom
+mgba*
 *.exe
 *.7z
 

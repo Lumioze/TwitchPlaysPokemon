@@ -37,7 +37,6 @@ winget install Git.Git
 You may need to restart your terminal in order for the PATH to update. At this point, all these tools should be in your PATH, which is important for this app to work properly.
 
 </details>
-<br />
 
 After installing your pre-requisites, run the following commands:
 

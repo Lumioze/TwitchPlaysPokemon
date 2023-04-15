@@ -10,21 +10,19 @@ import shutil
 import subprocess
 
 
-'''
-download_file(url: str) -> True if file was downloaded, or if file already exists, False
+def download_and_extract_mgba(mgba_link: str):
+	"""
+	Downloads and extracts mGBA.
 
-
-Downloads a file
-'''
-
-def download_and_extract_mgba(mgba_link):
-	local_filename = mgba_link.split('/')[-1]
+	:param str mgba_link: The GitHub link to a 7-Zip archive.
+	:return: True if file was downloaded, or if file already exists, False
+	"""
+	local_filename = mgba_link.split("/")[-1]
 	if exists(local_filename) is not True:
-		with requests.get(mgba_link, stream=True) as r:
-			with open(local_filename, 'wb') as f:
-				shutil.copyfileobj(r.raw, f)
+		with requests.get(mgba_link, stream=True) as response:
+			with open(local_filename, "wb") as file:
+				shutil.copyfileobj(response.raw, file)
 	else:
 		return False
 
-
-	subprocess.run(['7z', 'e', local_filename])
+	subprocess.run(["7z", "e", "-y", local_filename, "-o*"])

@@ -45,4 +45,5 @@ def connect(connection_delay=2):
 		print(e)
 		print(f"Attempting to connect in {connection_delay} seconds...")
 		connection_delay = connection_delay * 2 + 2
+		time.sleep(connection_delay)
 		connect(connection_delay)

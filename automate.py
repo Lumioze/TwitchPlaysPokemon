@@ -28,31 +28,39 @@ def setup_mgba():
 	time.sleep(5)
 	print("Ready!")
 
-	# Returns the handle of the window titled UNTITLED
+	# Returns the handle of the window titled mGBA
 	handle = win32gui.FindWindow(None, "mGBA")
 	print(f"Using handle {handle}")
 	return handle
 
 
-def press(button: str, hld: int):
-	key = ""
+def press(message: dict, hld: int):
+	button = message["message"]
+	special = False
+
+	if 'admin/1' in message['badges']:
+		has_privileges = True
+	elif 'broadcaster/1' in message['badges']:
+		has_privileges = True
+	elif 'moderator/1' in message['badges']:
+		has_privileges = True
+	else:
+		has_privileges = False
+
 	if len(button) <= len("select"):
 		if button == "a":
 			key = "x"
 		elif button == "b":
 			key = "z"
-		elif button == "left":
-			key = button
-		elif button == "right":
-			key = button
-		elif button == "up":
-			key = button
-		elif button == "down":
+		elif button in ['up', 'down', 'left', 'right']:
 			key = button
 		elif button == "select":
 			key = "backspace"
 		elif button == "start":
 			key = "enter"
+		elif button == 'pause' and has_privileges:
+			sp = True
+			key = ['ctrl', 'p']
 		else:
 			return
 	else:
@@ -63,4 +71,11 @@ def press(button: str, hld: int):
 			win32gui.SetForegroundWindow(hld)
 		except Exception:
 			pass
-		pydirectinput.press(key)
+		if not special:
+			pydirectinput.press(key)
+		else:
+			for k in key:
+				pydirectinput.keyDown(k)
+
+			for k in key:
+				pydirectinput.keyUp()

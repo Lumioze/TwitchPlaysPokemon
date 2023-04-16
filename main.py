@@ -2,11 +2,9 @@
 # @Author: user
 # @Date:   2023-04-12 17:01:11
 # @Last Modified by:   user
-# @Last Modified time: 2023-04-14 12:37:28
+# @Last Modified time: 2023-04-15 16:58:30
 
 from bot import run
-import asyncio
-
 def main():	
 	run()
 

@@ -6,6 +6,7 @@ from os import path
 
 class Config:
 	__emulator_header = "emulator"
+	__chat_header = "chat"
 	__mgba_version_key = "mgba_version"
 
 	def mgba_version_value():
@@ -30,7 +31,7 @@ class Config:
 	__twitch_channel_key = "twitch_channel"
 
 	def twitch_channel_value():
-		return Config.parser[Config.__emulator_header][Config.__twitch_channel_key]
+		return Config.parser[Config.__chat_header][Config.__twitch_channel_key]
 
 	parser = ConfigParser()
 	"""

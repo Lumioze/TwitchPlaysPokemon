@@ -36,16 +36,6 @@ def setup_mgba():
 
 def press(message: dict, hld: int):
 	button = message["message"]
-	special = False
-
-	if 'admin/1' in message['badges']:
-		has_privileges = True
-	elif 'broadcaster/1' in message['badges']:
-		has_privileges = True
-	elif 'moderator/1' in message['badges']:
-		has_privileges = True
-	else:
-		has_privileges = False
 
 	if len(button) <= len("select"):
 		if button == "a":
@@ -58,24 +48,9 @@ def press(message: dict, hld: int):
 			key = "backspace"
 		elif button == "start":
 			key = "enter"
-		elif button == 'pause' and has_privileges:
-			sp = True
-			key = ['ctrl', 'p']
-		else:
-			return
 	else:
 		return
 
 	if hld > 0:
-		try:
-			win32gui.SetForegroundWindow(hld)
-		except Exception:
-			pass
-		if not special:
-			pydirectinput.press(key)
-		else:
-			for k in key:
-				pydirectinput.keyDown(k)
-
-			for k in key:
-				pydirectinput.keyUp()
+		win32gui.SetForegroundWindow(hld)
+		pydirectinput.press(key)
